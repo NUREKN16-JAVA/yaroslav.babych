@@ -1,7 +1,5 @@
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+*Test.txt
 
 # Package Files #
 *.jar

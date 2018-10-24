@@ -1,9 +1,0 @@
-Testsuite: ua.nure.kn16.babych.usermanagment.UserTest
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 sec
-
-Testcase: getFullNameTest took 0.002 sec
-Testcase: simpleAgeTestAfter took 0 sec
-Testcase: ageTestSameMonthBefore took 0 sec
-Testcase: ageTestSameMonthAfter took 0.001 sec
-Testcase: simpleAgeTestBefore took 0 sec
-Testcase: ageTestSameDay took 0 sec
