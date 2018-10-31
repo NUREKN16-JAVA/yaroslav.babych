@@ -52,10 +52,21 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * @return user's full name
+     */
+
     public String getFullName() {
         return new StringBuilder(getLastName()).append(", ").append(getFirstName()).toString();
     }
 
+
+    /**
+     * Calculates user's age
+     * Expects a valid dateOfBirth set in the past
+     * Age increments at the start of a birth day, regardless of time set
+     * @return age in years
+     */
     public int getAge() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -104,3 +115,4 @@ public class User implements Serializable {
         return sb.toString();
     }
 }
+
