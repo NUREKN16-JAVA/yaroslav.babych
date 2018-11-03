@@ -17,3 +17,4 @@ bin*
 .project
 .idea
 /out/
+/usermanagement/db/

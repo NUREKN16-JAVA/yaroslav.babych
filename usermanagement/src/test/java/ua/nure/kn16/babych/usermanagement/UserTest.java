@@ -1,4 +1,4 @@
-package ua.nure.kn16.babych.usermanagment;
+package ua.nure.kn16.babych.usermanagement;
 
 import org.junit.Before;
 import org.junit.Test;

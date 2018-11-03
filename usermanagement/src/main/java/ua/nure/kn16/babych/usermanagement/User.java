@@ -1,4 +1,4 @@
-package ua.nure.kn16.babych.usermanagment;
+package ua.nure.kn16.babych.usermanagement;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -11,7 +11,7 @@ public class User implements Serializable {
     private String firstName, lastName;
     private Date dateOfBirth;
 
-    User() {}
+    public User() {}
 
     public User(Long id, String firstName, String lastName, Date dateOfBirth) {
         this.id = id;
@@ -19,6 +19,11 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
     }
+
+    public User(String firstName, String lastName, Date dateOfBirth) {
+        this(null, firstName, lastName, dateOfBirth);
+    }
+
 
     public Long getId() {
         return id;
