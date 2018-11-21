@@ -18,9 +18,8 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     private User user;
     private UserDAO dao;
     private ConnectionFactory connectionFactory;
-    /**
-    /* Tests are WIP and will be improved in the future
-     */
+
+
     @Override
     protected IDatabaseConnection getConnection() throws Exception {
         //connectionFactory = new ConnectionFactoryImpl();
@@ -45,6 +44,11 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     public void tearDown() throws Exception {
     }
 
+
+    /**
+     * Test create function
+     * @throws DBException
+     */
     @Test
     public void testCreate() throws DBException {
         assertNull(user.getId());
@@ -56,33 +60,44 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         assertEquals(user.getDateOfBirth(), userResult.getDateOfBirth());
     }
 
+    /**
+     * Test find function
+     * @throws DBException
+     */
     @Test
     public void testFind() throws DBException {
-        User userResult = dao.find(1L);
+        User userResult = dao.find(0L);
         assertNotNull(userResult);
-        assertEquals("A", userResult.getFirstName());
+        assertEquals("Petr", userResult.getFirstName());
     }
 
     @Test
     public void testFindAll() throws DBException {
-        User userResult = dao.create(user);
         Collection all = dao.findAll();
         assertNotNull(all);
-        assertEquals(2, all.size());
+        assertEquals(1, all.size());
     }
 
+    /**
+     * Test update function, assuming find function has already been tested
+     * @throws DBException
+     */
     @Test
     public void testUpdate() throws DBException {
-        User user = new User(1L, "A", "BCD", new Date());
-        dao.update(user);
-        User user2 = dao.find(user.getId());
+        User tuser = new User(0L, "A", "BCD", new Date());
+        dao.update(tuser);
+        User user2 = dao.find(tuser.getId());
         assertNotNull(user2);
-        assertEquals(user.getLastName(), user2.getLastName());
+        assertEquals(tuser.getLastName(), user2.getLastName());
     }
 
+    /**
+     * Test delete function, assuming findAll function has already been tested
+     * @throws DBException
+     */
     @Test
     public void testDelete() throws DBException {
         dao.delete(1L);
-        assertEquals(0, dao.findAll().size());
+        assertEquals(1, dao.findAll().size());
     }
 }

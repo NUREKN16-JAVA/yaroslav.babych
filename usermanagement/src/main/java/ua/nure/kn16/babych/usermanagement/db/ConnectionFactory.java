@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 public interface ConnectionFactory {
     /**
-     *
-     * @return
+     * Connect to db
+     * @return new Connection object
      */
     Connection createConnection() throws DBException;
 }

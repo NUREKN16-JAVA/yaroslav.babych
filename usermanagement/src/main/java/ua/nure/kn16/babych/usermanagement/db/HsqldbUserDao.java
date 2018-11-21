@@ -40,9 +40,11 @@ class HsqldbUserDao implements UserDAO {
             CallableStatement callableStatement =
                     connection.prepareCall(CALL_IDENTITY);
 
+            User u = new User(user);
+
             ResultSet keys = callableStatement.executeQuery();
             if (keys.next()) {
-                user.setId(keys.getLong(1));
+                u.setId(keys.getLong(1));
             }
 
             keys.close();
@@ -50,7 +52,7 @@ class HsqldbUserDao implements UserDAO {
             statement.close();
             connection.close();
 
-            return user;
+            return u;
         } catch (SQLException e) {
             throw new DBException(e);
         }

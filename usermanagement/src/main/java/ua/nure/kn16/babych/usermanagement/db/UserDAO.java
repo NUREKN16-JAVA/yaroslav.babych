@@ -9,7 +9,7 @@ public interface UserDAO {
     /**
      * Add a new user to DB table USER
      * @param user with null id field
-     * @return modified user record  with auto-generated id
+     * @return new user record  with auto-generated id
      */
     public User create(@NotNull final User user) throws DBException;
 
