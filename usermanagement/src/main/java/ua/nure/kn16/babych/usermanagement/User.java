@@ -14,15 +14,17 @@ public class User implements Serializable {
     public User() {}
 
     public User(Long id, String firstName, String lastName, Date dateOfBirth) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+        this.setId(id);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setDateOfBirth(dateOfBirth);
     }
 
     public User(String firstName, String lastName, Date dateOfBirth) {
         this(null, firstName, lastName, dateOfBirth);
     }
+
+    public User(User user) { this(user.getId(), user.getFirstName(), user.getLastName(), user.getDateOfBirth()); }
 
 
     public Long getId() {
@@ -49,12 +51,10 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
+    public Date getDateOfBirth() { return (Date) dateOfBirth.clone(); }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = (Date) dateOfBirth.clone();
     }
 
     /**
@@ -79,7 +79,7 @@ public class User implements Serializable {
         final int currentMonth = calendar.get(Calendar.MONTH);
         final int currentDate = calendar.get(Calendar.DATE);
 
-        calendar.setTime(dateOfBirth);
+        calendar.setTime(getDateOfBirth());
         final int birthYear = calendar.get(Calendar.YEAR);
         final int birthMonth = calendar.get(Calendar.MONTH);
         final int birthDate = calendar.get(Calendar.DATE);
