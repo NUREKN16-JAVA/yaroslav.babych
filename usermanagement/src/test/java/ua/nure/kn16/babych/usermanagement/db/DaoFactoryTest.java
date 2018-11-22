@@ -1,22 +1,18 @@
 package ua.nure.kn16.babych.usermanagement.db;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.fail;
 
 public class DaoFactoryTest {
 
-    @Before
     public void setUp() throws Exception {
     }
 
-    @Test
     public void getUserDAO() {
         try {
             DaoFactory daoFactory = DaoFactory.getInstance();
             assertNotNull(daoFactory);
-            UserDAO userDAO = daoFactory.getUserDAO();
+            UserDAO userDAO = daoFactory.getUserDao();
             assertNotNull(userDAO);
         } catch (Exception e) {
             e.printStackTrace();

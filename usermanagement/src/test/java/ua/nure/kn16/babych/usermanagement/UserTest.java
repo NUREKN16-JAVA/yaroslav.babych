@@ -1,12 +1,11 @@
 package ua.nure.kn16.babych.usermanagement;
 
-import org.junit.Before;
-import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static junit.framework.Assert.assertEquals;
+
 
 public class UserTest {
 
@@ -18,7 +17,6 @@ public class UserTest {
 
 
     // Test if string concatenation works
-    @Test
     public void getFullNameTest() {
         User user = new User(ID, FIRST_NAME, LAST_NAME, null);
         assertEquals("Иванов, Иван", user.getFullName());
@@ -29,7 +27,6 @@ public class UserTest {
 
     // Test getAge
     // when birthday was earlier this year
-    @Test
     public void simpleAgeTestAfter(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.APRIL, 11);
@@ -39,7 +36,6 @@ public class UserTest {
 
     // Test getAge
     // when birthday is coming later this year
-    @Test
     public void simpleAgeTestBefore(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.DECEMBER, 11);
@@ -49,7 +45,6 @@ public class UserTest {
 
     // Test getAge
     // when birthday was earlier this month
-    @Test
     public void ageTestSameMonthAfter(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, 3);
@@ -59,7 +54,6 @@ public class UserTest {
 
     // Test getAge
     // when birthday is coming later this month
-    @Test
     public void ageTestSameMonthBefore(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, 29);
@@ -67,8 +61,6 @@ public class UserTest {
         assertEquals(18, user.getAge());
     }
 
-
-    @Before
     public void initToday() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -77,7 +69,6 @@ public class UserTest {
 
     // Test getAge
     // when birthday is today
-    @Test
     public void ageTestSameDay(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, currentDay);

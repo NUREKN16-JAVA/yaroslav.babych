@@ -5,9 +5,6 @@ import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import ua.nure.kn16.babych.usermanagement.User;
 
 import java.util.Collection;
@@ -33,14 +30,12 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         return dataSet;
     }
 
-    @Before
     public void setUp() throws Exception {
         //getConnection();
-        dao = DaoFactory.getInstance().getUserDAO();
+        dao = DaoFactory.getInstance().getUserDao();
         user = new User("Ivan", "Ivanov", new Date());
     }
 
-    @After
     public void tearDown() throws Exception {
     }
 
@@ -49,7 +44,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
      * Test create function
      * @throws DBException
      */
-    @Test
     public void testCreate() throws DBException {
         assertNull(user.getId());
         User userResult = dao.create(user);
@@ -64,14 +58,12 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
      * Test find function
      * @throws DBException
      */
-    @Test
     public void testFind() throws DBException {
         User userResult = dao.find(0L);
         assertNotNull(userResult);
         assertEquals("Petr", userResult.getFirstName());
     }
 
-    @Test
     public void testFindAll() throws DBException {
         Collection all = dao.findAll();
         assertNotNull(all);
@@ -82,7 +74,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
      * Test update function, assuming find function has already been tested
      * @throws DBException
      */
-    @Test
     public void testUpdate() throws DBException {
         User tuser = new User(0L, "A", "BCD", new Date());
         dao.update(tuser);
@@ -95,7 +86,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
      * Test delete function, assuming findAll function has already been tested
      * @throws DBException
      */
-    @Test
     public void testDelete() throws DBException {
         dao.delete(1L);
         assertEquals(1, dao.findAll().size());
