@@ -1,13 +1,14 @@
 package ua.nure.kn16.babych.usermanagement;
 
 
+import junit.framework.TestCase;
+
 import java.util.Calendar;
 import java.util.Date;
 
 import static junit.framework.Assert.assertEquals;
 
-
-public class UserTest {
+public class UserTest extends TestCase {
 
     public static final long ID = 1L;
     public static final String FIRST_NAME = "Иван";
@@ -17,7 +18,7 @@ public class UserTest {
 
 
     // Test if string concatenation works
-    public void getFullNameTest() {
+    public void testGetFullName() {
         User user = new User(ID, FIRST_NAME, LAST_NAME, null);
         assertEquals("Иванов, Иван", user.getFullName());
     }
@@ -27,7 +28,7 @@ public class UserTest {
 
     // Test getAge
     // when birthday was earlier this year
-    public void simpleAgeTestAfter(){
+    public void testAgeAfter(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.APRIL, 11);
         User user = new User(ID, FIRST_NAME, LAST_NAME, calendar.getTime());
@@ -36,7 +37,7 @@ public class UserTest {
 
     // Test getAge
     // when birthday is coming later this year
-    public void simpleAgeTestBefore(){
+    public void testAgeBefore(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.DECEMBER, 11);
         User user = new User(ID, FIRST_NAME, LAST_NAME, calendar.getTime());
@@ -45,7 +46,7 @@ public class UserTest {
 
     // Test getAge
     // when birthday was earlier this month
-    public void ageTestSameMonthAfter(){
+    public void testAgeSameMonthAfter(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, 3);
         User user = new User(ID, FIRST_NAME, LAST_NAME, calendar.getTime());
@@ -54,14 +55,14 @@ public class UserTest {
 
     // Test getAge
     // when birthday is coming later this month
-    public void ageTestSameMonthBefore(){
+    public void testAgeSameMonthBefore(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, 29);
         User user = new User(ID, FIRST_NAME, LAST_NAME, calendar.getTime());
         assertEquals(18, user.getAge());
     }
 
-    public void initToday() {
+    public void setUp() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         currentDay = calendar.get(Calendar.DATE);
@@ -69,7 +70,7 @@ public class UserTest {
 
     // Test getAge
     // when birthday is today
-    public void ageTestSameDay(){
+    public void testAgeSameDay(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.OCTOBER, currentDay);
         User user = new User(ID, FIRST_NAME, LAST_NAME, calendar.getTime());

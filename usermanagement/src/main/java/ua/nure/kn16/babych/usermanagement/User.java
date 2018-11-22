@@ -51,10 +51,10 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() { return (Date) dateOfBirth.clone(); }
+    public Date getDateOfBirth() { return dateOfBirth; }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = (Date) dateOfBirth.clone();
+        this.dateOfBirth = dateOfBirth;
     }
 
     /**

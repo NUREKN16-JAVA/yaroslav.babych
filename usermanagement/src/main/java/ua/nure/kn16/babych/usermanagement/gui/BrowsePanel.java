@@ -15,6 +15,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton deleteButton;
     private JButton detailsButton;
 
+    public BrowsePanel() {
+        initialize();
+    }
+
     private void initialize() {
         this.setName("browsePanel");
         this.setLayout(new BorderLayout());

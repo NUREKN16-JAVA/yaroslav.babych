@@ -13,7 +13,7 @@ public abstract class DaoFactory {
     static {
         properties = new Properties();
         try {
-            properties.load(DaoFactory.class.getResourceAsStream("settings.properties"));
+            properties.load(DaoFactory.class.getResourceAsStream("/settings.properties"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
