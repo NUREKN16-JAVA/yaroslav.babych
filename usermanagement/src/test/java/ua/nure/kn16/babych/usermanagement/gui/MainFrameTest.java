@@ -5,10 +5,13 @@ import com.mockobjects.dynamic.Mock;
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
 import junit.extensions.jfcunit.TestHelper;
+import junit.extensions.jfcunit.eventdata.MouseEventData;
+import junit.extensions.jfcunit.eventdata.StringEventData;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
 import ua.nure.kn16.babych.usermanagement.User;
 import ua.nure.kn16.babych.usermanagement.db.DaoFactory;
 import ua.nure.kn16.babych.usermanagement.db.MockDaoFactory;
+import ua.nure.kn16.babych.usermanagement.util.Message;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,14 +63,46 @@ public class MainFrameTest extends JFCTestCase {
         find(JPanel.class, "browsePanel");
         JTable table = (JTable) find(JTable.class, "userTable");
         assertEquals(3, table.getColumnCount());
-        // TODO Localize test
-        assertEquals("id", table.getColumnName(0));
-        assertEquals("First Name", table.getColumnName(1));
-        assertEquals("Last Name", table.getColumnName(2));
+
+        assertEquals(Message.getString("id"), table.getColumnName(0));
+        assertEquals(Message.getString("firstname"), table.getColumnName(1));
+        assertEquals(Message.getString("lastname"), table.getColumnName(2));
 
         find(JButton.class, "addButton");
         find(JButton.class, "editButton");
         find(JButton.class, "deleteButton");
         find(JButton.class, "detailsButton");
+    }
+
+
+
+
+    public void testAddUser() {
+
+        JTable userTable = (JTable) find(JTable.class, "userTable");
+        assertEquals(1, userTable.getRowCount());
+
+        JButton addButton = (JButton) find(JButton.class, "addButton");
+        getHelper().enterClickAndLeave(new MouseEventData(this, addButton));
+        find(JPanel.class, "addPanel");
+        JTextField firstNameField = (JTextField) find(JTextField.class, "firstNameField");
+        JTextField lastNameField = (JTextField) find(JTextField.class, "lastNameField");
+        JTextField dateOfBirthField = (JTextField) find(JTextField.class, "dateOfBirthField");
+
+        JButton okButton = (JButton) find(JButton.class, "okButton");
+        find(JButton.class, "cancelButton");
+
+        getHelper().sendString(new StringEventData(this, firstNameField, "Vanya"));
+        getHelper().sendString(new StringEventData(this, lastNameField, "Ivanov"));
+        getHelper().sendString(new StringEventData(this, dateOfBirthField, "11.11.2011"));
+        getHelper().enterClickAndLeave(new MouseEventData(this, okButton));
+
+        find(JPanel.class, "browsePanel");
+        userTable = (JTable) find(JTable.class, "userTable");
+        assertEquals(1, userTable.getRowCount());
+    }
+
+    private void testEditUser() {
+
     }
 }
