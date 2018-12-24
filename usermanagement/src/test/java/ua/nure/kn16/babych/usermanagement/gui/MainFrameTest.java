@@ -15,10 +15,8 @@ import ua.nure.kn16.babych.usermanagement.util.Message;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.Properties;
 
 public class MainFrameTest extends JFCTestCase {
 
@@ -35,7 +33,8 @@ public class MainFrameTest extends JFCTestCase {
         User expectedUser = new User(1000L, "George", "Bush", new Date());
 
         users = Collections.singletonList(expectedUser);
-        mockUserDao.expectAndReturn("findAll", users);
+        mockUserDao.expectAndReturn("findAll", new ArrayList<>());
+        mockUserDao.expectAndReturn("create", null);
         setHelper(new JFCTestHelper());
 
         mainFrame = new MainFrame();
@@ -80,7 +79,7 @@ public class MainFrameTest extends JFCTestCase {
     public void testAddUser() {
 
         JTable userTable = (JTable) find(JTable.class, "userTable");
-        assertEquals(1, userTable.getRowCount());
+        assertEquals(0, userTable.getRowCount());
 
         JButton addButton = (JButton) find(JButton.class, "addButton");
         getHelper().enterClickAndLeave(new MouseEventData(this, addButton));

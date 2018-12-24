@@ -4,7 +4,7 @@ import ua.nure.kn16.babych.usermanagement.User;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 class HsqldbUserDao implements UserDAO {
 
@@ -84,7 +84,7 @@ class HsqldbUserDao implements UserDAO {
     }
 
     @Override
-    public List<User> findAll() throws DBException {
+    public Collection<User> findAll() throws DBException {
         try {
             Connection connection = connectionFactory.createConnection();
             Statement statement = connection.createStatement();

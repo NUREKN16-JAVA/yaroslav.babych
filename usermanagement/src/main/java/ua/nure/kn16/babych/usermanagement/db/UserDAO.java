@@ -3,7 +3,7 @@ package ua.nure.kn16.babych.usermanagement.db;
 import com.sun.istack.internal.NotNull;
 import ua.nure.kn16.babych.usermanagement.User;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface UserDAO {
     /**
@@ -25,7 +25,7 @@ public interface UserDAO {
      * Find all users in DB
      * @return list of all users
      */
-    public List<User> findAll() throws DBException;
+    public Collection<User> findAll() throws DBException;
 
     /**
      * Update user's info in DB

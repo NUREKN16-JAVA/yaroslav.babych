@@ -2,9 +2,8 @@ package ua.nure.kn16.babych.usermanagement.db;
 
 import ua.nure.kn16.babych.usermanagement.User;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 public class MockUserDao implements UserDAO {
 
@@ -13,7 +12,7 @@ public class MockUserDao implements UserDAO {
 
     @Override
     public User create(User user) throws DBException {
-        Long currentId = id++;
+        Long currentId = ++id;
         user.setId(currentId);
         users.put(currentId, user);
         return user;
@@ -27,8 +26,8 @@ public class MockUserDao implements UserDAO {
     }
 
     @Override
-    public List<User> findAll() throws DBException {
-        return new ArrayList(users.values());
+    public Collection<User> findAll() throws DBException {
+        return users.values();
     }
 
     @Override
