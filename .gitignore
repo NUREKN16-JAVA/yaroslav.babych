@@ -8,7 +8,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
+gi
 # Target, bin and settings
 target*
 bin*
@@ -17,4 +17,6 @@ bin*
 .project
 .idea
 /out/
-/usermanagement/db/
+/db/
+usermanagement/apache-tomcat-5.5.12/
+usermanagement/lib/
