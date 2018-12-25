@@ -2,10 +2,7 @@ package ua.nure.kn16.babych.usermanagement.web;
 
 import ua.nure.kn16.babych.usermanagement.User;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class BrowseServletTest extends MockServletTestCase {
 
@@ -42,6 +39,14 @@ public class BrowseServletTest extends MockServletTestCase {
         User userInSession = (User) getWebMockObjectFactory().getMockSession().getAttribute("user");
         assertNotNull("Couldn't find user in session", userInSession);
         assertSame(user, userInSession);
+    }
+
+    public void testDelete() {
+        getMockUserDao().expect("delete", 1000L);
+        getMockUserDao().expectAndReturn("findAll", new ArrayList<User>());
+        addRequestParameter("deleteButton", "delete");
+        addRequestParameter("id", "1000");
+        doPost();
     }
 
 
