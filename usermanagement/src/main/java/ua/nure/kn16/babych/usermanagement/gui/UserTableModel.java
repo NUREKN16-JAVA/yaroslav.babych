@@ -14,7 +14,7 @@ public class UserTableModel extends AbstractTableModel {
     private static final String[] COLUMN_NAMES = {Message.getString("id"), Message.getString("firstname"), Message.getString("lastname")};
     private static final  Class[] COLUMN_CLASSES = {Long.class, String.class, String.class};
 
-    UserTableModel(Collection<User> users) {
+    public UserTableModel(Collection<User> users) {
         super();
         this.users = new ArrayList(users);
     }
@@ -51,5 +51,13 @@ public class UserTableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int i) {
         return COLUMN_NAMES[i];
+    }
+
+    public void addUsers(Collection users) {
+        this.users.addAll(users);
+    }
+
+    public void clearUsers() {
+        this.users = new ArrayList<>();
     }
 }

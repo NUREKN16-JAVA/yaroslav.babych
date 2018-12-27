@@ -13,6 +13,7 @@ class HsqldbUserDao implements UserDAO {
     private static final String FINDALL_QUERY = "SELECT * FROM USERS";
     private static final String UPDATE_QUERY = "UPDATE USERS SET FIRSTNAME = ?, LASTNAME = ?, DATEOFBIRTH = ? WHERE ID = ?";
     private static final String DELETE_QUERY = "DELETE FROM USERS WHERE ID = ?";
+    private static final String NAME_QUERY = "SELECT ID, DATEOFBIRTH FROM USERS WHERE FIRSTNAME=? AND LASTNAME=?";
 
     private static final String CALL_IDENTITY = "call IDENTITY()";
     private ConnectionFactory connectionFactory;
@@ -141,6 +142,31 @@ class HsqldbUserDao implements UserDAO {
 
             statement.close();
             connection.close();
+        } catch (SQLException e) {
+            throw new DBException(e);
+        }
+    }
+
+    @Override
+    public Collection<User> findByName(String firstName, String lastName) throws DBException {
+        try {
+            Connection connection = connectionFactory.createConnection();
+            PreparedStatement statement = connection.prepareStatement(NAME_QUERY);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            ResultSet resultSet = statement.executeQuery();
+
+            ArrayList<User> users = new ArrayList<>();
+            while(resultSet.next()) {
+                Long id = resultSet.getLong(1);
+                Date birthDate = resultSet.getDate(2);
+                users.add(new User(id, firstName, lastName, birthDate));
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+            return users;
         } catch (SQLException e) {
             throw new DBException(e);
         }

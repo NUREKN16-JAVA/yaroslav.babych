@@ -41,6 +41,9 @@ public interface UserDAO {
      */
     public void delete(final Long id) throws DBException;
 
+    public Collection<User> findByName(String firstName, String lastName) throws DBException;
+
+
     public ConnectionFactory getConnectionFactory();
 
     /**

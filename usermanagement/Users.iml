@@ -50,5 +50,9 @@
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="standard-1.1.1" level="project" />
     <orderEntry type="library" name="xml-apis" level="project" />
+    <orderEntry type="library" name="commons-codec-1.3" level="project" />
+    <orderEntry type="library" name="jade" level="project" />
+    <orderEntry type="library" name="iiop" level="project" />
+    <orderEntry type="library" name="http" level="project" />
   </component>
 </module>
